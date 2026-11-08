@@ -1,32 +1,71 @@
 # PushT World Model
 
-Notebook tham khảo cho project học quy luật tương tác giữa robot và vật thể trong bài toán PushT.
+Mã nguồn và tư liệu cho project học quy luật tương tác giữa robot và vật thể trong bài toán PushT.
+
+## Xem nhanh
+
+- [Notebook có code và output lưu sẵn](PushT_WorldModel.ipynb)
+- [Bản HTML của notebook để tải về xem offline](PushT_WorldModel.html)
+- [Mã ước lượng tư thế khối T](pusht_pose.py)
+- [Ảnh và GIF trích trực tiếp từ output notebook](results/notebook_figures/)
+- [Ảnh được lưu trong thư mục kết quả trên máy](PushT/results/)
+- [Log output đã lưu trong notebook](results/notebook_stdout.txt)
+- [Video quay màn hình gốc](media/screen_recording_original.mp4)
+- [Dữ liệu đã xử lý](PushT/data/sim/)
+- [Các checkpoint thực sự có trên máy](PushT/models/)
+- [Danh mục tệp và mã kiểm tra toàn vẹn](ARTIFACT_MANIFEST.json)
 
 ## Nguồn và hiện trạng
 
-Notebook này được người nộp nhận từ người khác và đang được dùng để tìm hiểu phương pháp. Các output, hình và GIF được lưu sẵn trong notebook thuộc lần chạy được cung cấp cùng tài liệu; **không phải kết quả của một lần chạy lại đầy đủ do người nộp thực hiện**.
+Notebook được người nộp nhận từ người khác để tìm hiểu phương pháp. Các output, hình, GIF và số liệu lưu sẵn thuộc lần chạy đi kèm tài liệu tham khảo; **không phải một lần chạy lại toàn bộ đã được người nộp xác nhận**. Repository giữ các tư liệu hiện có để giảng viên có thể kiểm tra nội dung, đồng thời phân biệt nguồn trong phần dưới.
 
-Người nộp chưa chạy lại toàn bộ quy trình huấn luyện, chọn checkpoint, thu dữ liệu tự chơi và đánh giá. Repository chỉ giữ notebook hiện có cùng hướng dẫn này. Không bổ sung trọng số, video hay số liệu thực nghiệm mới cho các bước chưa hoàn thành. Báo cáo được nộp riêng và không nằm trong repository.
+Các chỉnh sửa vận hành đã áp dụng gồm đường dẫn dữ liệu theo thư mục dự án, đúng tên biểu đồ khi nạp kết quả, kiểm tra đủ dữ liệu/video khi tải và xử lý sai số làm tròn của thanh sai số biểu đồ. Báo cáo Word/PDF được nộp riêng, không đưa vào repository.
 
-Các chỉnh sửa vận hành đã áp dụng gồm đường dẫn lưu dữ liệu theo thư mục dự án, đúng tên file biểu đồ khi nạp checkpoint, kiểm tra đủ dữ liệu/video khi tải và xử lý sai số làm tròn của thanh sai số biểu đồ.
+### Phân biệt các nhóm tư liệu
 
-## Nội dung notebook
+| Nhóm | Nguồn và giới hạn |
+|---|---|
+| Notebook, output và GIF demo | Tài liệu được cung cấp; chỉ dùng làm kết quả tham khảo |
+| `results/notebook_figures` và log | Tách nguyên dữ liệu ảnh/log đã lưu trong notebook, không chạy lại huấn luyện |
+| `PushT/results` và `PushT/data/sim` | Các tệp thực sự có trong thư mục dự án tại lúc đóng gói; không mặc định cùng một lần chạy với output lưu trong notebook |
+| `PushT/data/raw` và `raw_keypoints` | Bản dữ liệu đã tải từ Hugging Face, không phải demo do người nộp tạo |
+| `PushT/models` | Có `wm.pt` và checkpoint Diffusion e025, e050, e075, e100, e125; không có mô hình cuối cùng `dp_final.pt` hoặc `wm_iter1.pt` |
+| Video gốc | Tệp quay màn hình đi kèm hồ sơ, không dùng riêng tệp này để chứng minh hoàn thành huấn luyện |
+| Ảnh robot thật | Minh họa bối cảnh bài toán; không phải bằng chứng thử nghiệm phần cứng của người nộp |
 
-1. Tải dữ liệu `lerobot/pusht` và kiểm tra trạng thái, hành động, ảnh.
-2. Mô phỏng PushT và ước lượng tư thế khối T từ ảnh.
-3. Xây dựng World Model dự đoán độ thay đổi tư thế vật thể.
-4. Phần mở rộng Diffusion Policy và kết hợp chọn hành động bằng World Model.
-5. Thiết kế đánh giá, thu dữ liệu tự chơi và clip minh họa.
+Chưa có JSON đánh giá theo từng ván hoặc dữ liệu tự chơi `rollouts_iter1.npz` trong snapshot này. Không tạo thêm tệp giả, trọng số giả hoặc các phép đo chưa thực hiện. Các output tham khảo vẫn được giữ nguyên trong notebook.
 
-Sự hiện diện của mã và output có sẵn không được hiểu là mọi bước đã được người nộp chạy lại.
+## Demo tham khảo
 
-## Xem nội dung
+Các clip dưới đây lấy từ bộ tư liệu được cung cấp. Khung trái là Chỉ Diffusion; khung phải là Diffusion kết hợp World Model vòng 1 theo nhãn trong clip. Việc chọn các ván minh họa không thay thế đánh giá trên toàn bộ tập seed.
 
-Mở [PushT_WorldModel.ipynb](PushT_WorldModel.ipynb) để xem mã và các output lưu trong file. Khi xem offline bằng VS Code hoặc JupyterLab, có thể đọc notebook mà không khởi chạy huấn luyện. Một số trình xem notebook trên web có thể xử lý ảnh động khác nhau; việc kiểm tra thực thi cần môi trường Python và dữ liệu riêng.
+### Seed 4000
+
+![Demo tham khảo seed 4000](media/clip_seed4000.gif)
+
+### Seed 4036
+
+![Demo tham khảo seed 4036](media/clip_seed4036.gif)
+
+### Seed 4093
+
+![Demo tham khảo seed 4093](media/clip_seed4093.gif)
+
+Video MP4 gốc: [xem hoặc tải tệp](media/screen_recording_original.mp4). GIF được nhúng trực tiếp ở README để giảng viên xem nhanh ngay cả khi trình xem notebook không phát ảnh động. GitHub cũng hỗ trợ video đính kèm theo [hướng dẫn chính thức](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/attaching-files). Việc đăng tệp lên GitHub không tự chạy huấn luyện mô hình.
+
+## Nội dung và chiến thuật
+
+1. Tải dữ liệu `lerobot/pusht` và đối chiếu trạng thái, hành động, ảnh.
+2. Ước lượng tư thế khối T từ ảnh bằng khớp khuôn hình học và IoU.
+3. Huấn luyện World Model dự đoán độ thay đổi tư thế từ trạng thái và hành động; chia theo ván để tránh rò rỉ dữ liệu.
+4. Đánh giá so với mốc vật thể đứng yên và kiểm tra các khung thực sự chuyển động.
+5. Phần mở rộng sinh ứng viên bằng Diffusion, chọn bằng World Model, thu dữ liệu tự chơi và đánh giá lại.
+
+Sự có mặt của mã hoặc output tham khảo không có nghĩa mọi bước đã được người nộp chạy lại.
 
 ## Chạy lại trên Windows
 
-Môi trường đã kiểm tra: Python 3.11.9, PyTorch 2.7.1 với CUDA 11.8. Chọn bản PyTorch phù hợp với phần cứng trước khi huấn luyện.
+Môi trường đã kiểm tra: Python 3.11.9, PyTorch 2.7.1 với CUDA 11.8. Chọn bản PyTorch phù hợp với GPU và driver.
 
 ```powershell
 python -m venv .venv
@@ -36,23 +75,17 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -X utf8 -m jupyter lab "PushT_WorldModel.ipynb"
 ```
 
-Trong VS Code, phải chọn kernel `.venv/Scripts/python.exe`; kích hoạt `.venv` ở Terminal không tự đổi kernel của notebook. Chạy từ trên xuống. Thư mục `PushT` sẽ chứa dữ liệu và kết quả của lần chạy mới. Mặc định, các bước nặng dùng lại file đã có khi cờ `FORCE` tương ứng là `False`.
+Trong VS Code phải chọn kernel `.venv/Scripts/python.exe`. Kích hoạt `.venv` ở Terminal không tự đổi kernel của notebook. Chạy lần lượt từ trên xuống. Dữ liệu và kết quả được lưu trong `PushT`.
 
-Huấn luyện Diffusion là bước tốn thời gian. Khi mới tìm hiểu, có thể chạy từng ô trước. Không giảm `DP_EPOCHS` xuống dưới 175 mà giữ nguyên bước chọn checkpoint, vì mã chọn hiện xét checkpoint từ epoch 175.
+Các bước nặng dùng lại tệp đã có khi cờ `FORCE` tương ứng là `False`. Đây không phải cơ chế tiếp tục huấn luyện từ giữa epoch: nếu thiếu checkpoint cuối, mã huấn luyện hiện tại có thể chạy lại từ đầu. Cần giữ riêng tư liệu tham khảo và ghi nhận một lần chạy mới khi tái lập. Không giảm `DP_EPOCHS` xuống dưới 175 mà giữ nguyên bước chọn checkpoint.
 
-## Video trên GitHub
-
-GitHub có thể lưu và hiển thị ảnh GIF, đồng thời hỗ trợ đính kèm video MP4, MOV và WebM. Tài liệu GitHub khuyến nghị H.264 để tăng khả năng tương thích với trình duyệt. Đây là xem lại video đã ghi, không có nghĩa GitHub tự chạy huấn luyện mô hình hay cấp GPU khi mở repository.
-
-Theo yêu cầu hiện tại, không đưa thêm video kết quả chưa được người nộp tự chạy vào repository. Các hình và GIF sẵn có vẫn nằm trong notebook tham khảo và cần được đọc cùng phần ghi chú nguồn ở trên.
-
-## Tài liệu
+## Tài liệu tham khảo
 
 - Dataset: https://huggingface.co/datasets/lerobot/pusht
+- Dataset keypoints: https://huggingface.co/datasets/lerobot/pusht_keypoints
 - Diffusion Policy: https://diffusion-policy.cs.columbia.edu/
 - Mã nguồn chính thức: https://github.com/real-stanford/diffusion_policy
 - Bài báo: https://arxiv.org/abs/2303.04137
 - Tutorial do giảng viên gợi ý: https://learnrobotics.ai/learn/day-17
-- Hướng dẫn video của GitHub: https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/attaching-files
 
-Nguồn tác giả và quyền sử dụng của notebook nhận từ người khác cần được người nộp xác nhận. Các nguồn bên ngoài giữ nguyên điều kiện sử dụng và bản quyền của tác giả tương ứng.
+Nguồn tác giả của notebook tham khảo cần được bổ sung khi được xác nhận. Các nguồn bên ngoài giữ nguyên điều kiện sử dụng và bản quyền tương ứng. Bộ dữ liệu gốc được ghi nguồn trong metadata và README kèm theo.

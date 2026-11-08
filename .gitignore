@@ -1,0 +1,8 @@
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+**/.cache/
+.env
+Bao_cao/
+*.docx
+.submission_work/

@@ -1,0 +1,131 @@
+===== Notebook cell 2 | execution_count 1 =====
+===== Notebook cell 3 | execution_count 2 =====
+Thiết bị: cuda | NVIDIA GeForce RTX 3060 Laptop GPU
+Thư mục gốc: D:\AI\PushT
+
+===== Notebook cell 5 | execution_count 3 =====
+Số khung hình: 25650 | số ván (episode): 206
+Độ dài một ván: ngắn nhất 49, trung bình 124.5, dài nhất 246 khung
+Vị trí robot  min/max: [13.456424 32.938293] [496.14618 510.9579 ]
+Hành động     min/max: [12. 25.] [511. 511.]
+Khác biệt trung bình |action_t - state_t| = 14.82 ; |action_t - state_(t+1)| = 8.87
+
+===== Notebook cell 6 | execution_count 4 =====
+Đọc được 8 khung đầu, kích thước một khung: (96, 96, 3)
+
+===== Notebook cell 9 | execution_count 5 =====
+Trạng thái ban đầu [robot x, robot y, khối x, khối y, góc khối]: [390.   304.   241.54 268.52   3.4 ]
+
+===== Notebook cell 11 | execution_count 6 =====
+Writing pusht_pose.py
+
+===== Notebook cell 12 | execution_count 7 =====
+Trên 40 ảnh simulator (thang 0..512): sai số vị trí trung bình 1.19, lớn nhất 3.53 | sai số góc trung bình 0.72°, lớn nhất 2.61° | IoU trung bình 0.877
+
+===== Notebook cell 14 | execution_count 8 =====
+Đã có kết quả lưu, bỏ qua bước chạy lại (đặt FORCE['pose'] = True để chạy lại).
+Độ khớp IoU: trung bình 0.858 | nhỏ nhất 0.610 | số khung IoU < 0,75: 16 | không tìm thấy khối: 0
+
+===== Notebook cell 15 | execution_count 9 =====
+===== Notebook cell 17 | execution_count 10 =====
+Đã có bộ dữ liệu, bỏ qua (đặt FORCE['dataset'] = True để dựng lại).
+Bộ dữ liệu: 25650 khung, 206 ván | khối T x∈[59, 442], y∈[108, 485]
+
+===== Notebook cell 19 | execution_count 11 =====
+[Đồng bộ] lệch vị trí robot giữa hai bộ: trung bình 0.0000, lớn nhất 0.0000
+[So với tư thế thật] 25650/25650 khung ghép điểm được
+Sai số vị trí: trung bình 1.73 | trung vị 1.54 | p95 3.69 | lớn nhất 10.66 (thang 0..512)
+Sai số góc:    trung bình 0.84° | trung vị 0.69° | p95 2.14° | lớn nhất 7.06°
+
+===== Notebook cell 22 | execution_count 12 =====
+===== Notebook cell 23 | execution_count 13 =====
+Đã có wm.pt, nạp lại (đặt FORCE['wm'] = True để huấn luyện lại).
+=== DỰ ĐOÁN 1 BƯỚC, tập kiểm tra TẤT CẢ (2685 mẫu; 1036 mẫu khối T thực sự di chuyển) ===
+World Model            | tất cả: vị trí 1.52, góc 0.87° | khi khối di chuyển: vị trí 2.28, góc 1.29°
+Mốc: khối T đứng yên   | tất cả: vị trí 2.43, góc 1.37° | khi khối di chuyển: vị trí 4.84, góc 2.42°
+=== DỰ ĐOÁN 1 BƯỚC, tập kiểm tra CHỈ VÁN CỦA NGƯỜI (2685 mẫu; 1036 mẫu khối T thực sự di chuyển) ===
+World Model            | tất cả: vị trí 1.52, góc 0.87° | khi khối di chuyển: vị trí 2.28, góc 1.29°
+Mốc: khối T đứng yên   | tất cả: vị trí 2.43, góc 1.37° | khi khối di chuyển: vị trí 4.84, góc 2.42°
+
+=== ĐOÁN XA 1..8 BƯỚC (sai số trung bình) ===
+bước         :      1      2      3      4      5      6      7      8
+WM vị trí    :    1.5    1.7    1.9    2.1    2.3    2.5    2.6    2.8
+Đứng yên     :    2.4    3.9    5.5    7.0    8.6   10.2   11.8   13.4
+WM góc (độ)  :    0.9    1.0    1.1    1.1    1.2    1.3    1.5    1.5
+Đứng yên     :    1.4    2.3    3.2    4.1    5.0    5.9    6.8    7.7
+
+===== Notebook cell 26 | execution_count 14 =====
+===== Notebook cell 27 | execution_count 15 =====
+Đã có checkpoint cuối (dp_v2_e300.pt), bỏ qua huấn luyện (đặt FORCE['dp'] = True để huấn luyện lại).
+
+===== Notebook cell 29 | execution_count 16 =====
+===== Notebook cell 30 | execution_count 17 =====
+Đã có dp_final.pt, bỏ qua bước chọn checkpoint (đặt FORCE['select'] = True để chọn lại).
+
+===== Notebook cell 33 | execution_count 18 =====
+Hệ số robot bám hành động α = 0.40 (mỗi bước robot đi được khoảng 40% quãng đường tới điểm đặt)
+Kiểm tra đặc trưng numpy so với torch: lệch lớn nhất 4.77e-07
+
+===== Notebook cell 34 | execution_count 19 =====
+===== Notebook cell 36 | execution_count 20 =====
+chi_diffusion              đã chạy 100 ván trong 270 giây
+diffusion_wm_v0            đã chạy 100 ván trong 258 giây
+Chỉ Diffusion              | thành công  69/100 =  69% (KTC 95%: 59–77%) | phủ TB 0.94 | điểm kiểu bài báo 0.981
+Diffusion + WM vòng 0      | thành công  70/100 =  70% (KTC 95%: 60–78%) | phủ TB 0.95 | điểm kiểu bài báo 0.991
+
+===== Notebook cell 38 | execution_count 21 =====
+Đã có dữ liệu robot tự chơi (rollouts_iter1.npz), bỏ qua (đặt FORCE['rollout'] = True để thu lại).
+Dữ liệu tự chơi: {'agent': (20329, 2), 'block': (20329, 3), 'action': (20329, 2), 'episode': (20329,)}
+
+===== Notebook cell 39 | execution_count 22 =====
+Đã có wm_iter1.pt, nạp lại (đặt FORCE['wm_iter1'] = True để huấn luyện lại).
+=== DỰ ĐOÁN 1 BƯỚC, tập kiểm tra TẤT CẢ (4702 mẫu; 1488 mẫu khối T thực sự di chuyển) ===
+World Model            | tất cả: vị trí 1.04, góc 0.58° | khi khối di chuyển: vị trí 1.91, góc 1.00°
+Mốc: khối T đứng yên   | tất cả: vị trí 1.96, góc 1.08° | khi khối di chuyển: vị trí 5.01, góc 2.26°
+=== DỰ ĐOÁN 1 BƯỚC, tập kiểm tra CHỈ VÁN CỦA NGƯỜI (2685 mẫu; 1036 mẫu khối T thực sự di chuyển) ===
+World Model            | tất cả: vị trí 1.50, góc 0.86° | khi khối di chuyển: vị trí 2.17, góc 1.25°
+Mốc: khối T đứng yên   | tất cả: vị trí 2.43, góc 1.37° | khi khối di chuyển: vị trí 4.84, góc 2.42°
+=== DỰ ĐOÁN 1 BƯỚC, tập kiểm tra CHỈ VÁN ROBOT TỰ CHƠI (2017 mẫu; 452 mẫu khối T thực sự di chuyển) ===
+World Model            | tất cả: vị trí 0.44, góc 0.20° | khi khối di chuyển: vị trí 1.34, góc 0.44°
+Mốc: khối T đứng yên   | tất cả: vị trí 1.35, góc 0.68° | khi khối di chuyển: vị trí 5.40, góc 1.91°
+
+=== ĐOÁN XA 1..8 BƯỚC (sai số trung bình) ===
+bước         :      1      2      3      4      5      6      7      8
+WM vị trí    :    1.0    1.2    1.4    1.5    1.7    1.8    1.9    2.1
+Đứng yên     :    2.0    3.4    4.9    6.4    7.9    9.3   10.8   12.3
+WM góc (độ)  :    0.6    0.7    0.8    0.8    0.9    1.0    1.0    1.1
+Đứng yên     :    1.1    1.9    2.7    3.5    4.4    5.2    6.0    6.7
+
+===== Notebook cell 41 | execution_count 23 =====
+diffusion_wm_v1            đã chạy 100 ván trong 235 giây
+=== BẢNG KẾT QUẢ (100 ván, seed 4000–4099) ===
+Chỉ Diffusion              | thành công  69/100 =  69% (KTC 95%: 59–77%) | phủ TB 0.94 | điểm kiểu bài báo 0.981
+Diffusion + WM vòng 0      | thành công  70/100 =  70% (KTC 95%: 60–78%) | phủ TB 0.95 | điểm kiểu bài báo 0.991
+Diffusion + WM vòng 1      | thành công  80/100 =  80% (KTC 95%: 71–87%) | phủ TB 0.95 | điểm kiểu bài báo 0.988
+
+===== Notebook cell 42 | execution_count 24 =====
+Diffusion + WM vòng 0    so với Chỉ Diffusion          | tốt hơn/ngang/tệ hơn (độ phủ): 16/63/21 | thành công +1 ván | chênh điểm bài báo +0.010 (KTC 95%: -0.005 … +0.034)
+Diffusion + WM vòng 1    so với Chỉ Diffusion          | tốt hơn/ngang/tệ hơn (độ phủ): 25/60/15 | thành công +11 ván | chênh điểm bài báo +0.007 (KTC 95%: -0.019 … +0.034)
+Diffusion + WM vòng 1    so với Diffusion + WM vòng 0  | tốt hơn/ngang/tệ hơn (độ phủ): 21/65/14 | thành công +10 ván | chênh điểm bài báo -0.004 (KTC 95%: -0.024 … +0.008)
+
+===== Notebook cell 43 | execution_count 25 =====
+===== Notebook cell 46 | execution_count 26 =====
+Các seed được quay: [4036, 4093, 4000]
+seed 4036 | Chỉ Diffusion: phủ 0.00 chưa đạt | Diffusion + WM vòng 1: phủ 0.96 THÀNH CÔNG | 170 khung | 0.4 MB
+Clip seed 4036 (trái: Chỉ Diffusion | phải: Diffusion + WM vòng 1):
+
+seed 4093 | Chỉ Diffusion: phủ 0.69 chưa đạt | Diffusion + WM vòng 1: phủ 0.96 THÀNH CÔNG | 170 khung | 0.4 MB
+Clip seed 4093 (trái: Chỉ Diffusion | phải: Diffusion + WM vòng 1):
+
+seed 4000 | Chỉ Diffusion: phủ 0.98 THÀNH CÔNG | Diffusion + WM vòng 1: phủ 0.96 THÀNH CÔNG | 112 khung | 0.3 MB
+Clip seed 4000 (trái: Chỉ Diffusion | phải: Diffusion + WM vòng 1):
+
+===== Notebook cell 48 | execution_count 27 =====
+Cấu hình                   | Thành công   | Phủ TB   | Điểm kiểu bài báo
+Chỉ Diffusion              |  69/100 =  69% | 0.94     | 0.981
+Diffusion + WM vòng 0      |  70/100 =  70% | 0.95     | 0.991
+Diffusion + WM vòng 1      |  80/100 =  80% | 0.95     | 0.988
+
+World Model vòng 0, đoán xa 8 bước (vị trí / góc):  WM 2.8 / 1.5°   mốc đứng yên 13.4 / 7.7°
+
+===== Notebook cell 50 | execution_count 28 =====
