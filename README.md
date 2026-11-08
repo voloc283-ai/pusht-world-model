@@ -1,91 +1,74 @@
-# PushT World Model
+# World Model cho PushT
 
-Mã nguồn và tư liệu cho project học quy luật tương tác giữa robot và vật thể trong bài toán PushT.
+Mã nguồn và tư liệu của bài toán học quy luật tương tác giữa robot và khối chữ T. World Model dự đoán thay đổi tư thế vật từ trạng thái và hành động; phần mở rộng dùng Diffusion để sinh ứng viên và World Model để lựa chọn.
 
-## Xem nhanh
+## Xem chương trình và kết quả
 
-- [Notebook có code và output lưu sẵn](PushT_WorldModel.ipynb)
-- [Bản HTML của notebook để tải về xem offline](PushT_WorldModel.html)
+- [Notebook gồm toàn bộ code và output lưu sẵn](PushT_WorldModel.ipynb)
+- [Bản HTML được cung cấp cùng notebook](PushT_WorldModel.html) — tải về và mở bằng trình duyệt
 - [Mã ước lượng tư thế khối T](pusht_pose.py)
-- [Ảnh và GIF trích trực tiếp từ output notebook](results/notebook_figures/)
-- [Ảnh được lưu trong thư mục kết quả trên máy](PushT/results/)
-- [Log output đã lưu trong notebook](results/notebook_stdout.txt)
-- [Video quay màn hình gốc](media/screen_recording_original.mp4)
-- [Dữ liệu đã xử lý](PushT/data/sim/)
-- [Các checkpoint thực sự có trên máy](PushT/models/)
-- [Danh mục tệp và mã kiểm tra toàn vẹn](ARTIFACT_MANIFEST.json)
+- [Hình và GIF trích từ output notebook](results/notebook_figures/)
+- [Log output đã lưu](results/notebook_stdout.txt)
+- [Video quay màn hình MP4](media/screen_recording_original.mp4)
+- [Các tệp kết quả đã đưa lên từ lần trước](PushT/results/)
+- [Dữ liệu đã xử lý được giữ từ lần trước](PushT/data/sim/)
+- [Checkpoint hiện có trong repository](PushT/models/)
+- [Danh mục tệp và mã băm Git](ARTIFACT_MANIFEST.json)
 
-## Nguồn và hiện trạng
+## Demo
 
-Notebook được người nộp nhận từ người khác để tìm hiểu phương pháp. Các output, hình, GIF và số liệu lưu sẵn thuộc lần chạy đi kèm tài liệu tham khảo; **không phải một lần chạy lại toàn bộ đã được người nộp xác nhận**. Repository giữ các tư liệu hiện có để giảng viên có thể kiểm tra nội dung, đồng thời phân biệt nguồn trong phần dưới.
-
-Các chỉnh sửa vận hành đã áp dụng gồm đường dẫn dữ liệu theo thư mục dự án, đúng tên biểu đồ khi nạp kết quả, kiểm tra đủ dữ liệu/video khi tải và xử lý sai số làm tròn của thanh sai số biểu đồ. Báo cáo Word/PDF được nộp riêng, không đưa vào repository.
-
-### Phân biệt các nhóm tư liệu
-
-| Nhóm | Nguồn và giới hạn |
-|---|---|
-| Notebook, output và GIF demo | Tài liệu được cung cấp; chỉ dùng làm kết quả tham khảo |
-| `results/notebook_figures` và log | Tách nguyên dữ liệu ảnh/log đã lưu trong notebook, không chạy lại huấn luyện |
-| `PushT/results` và `PushT/data/sim` | Các tệp thực sự có trong thư mục dự án tại lúc đóng gói; không mặc định cùng một lần chạy với output lưu trong notebook |
-| `PushT/data/raw` và `raw_keypoints` | Bản dữ liệu đã tải từ Hugging Face, không phải demo do người nộp tạo |
-| `PushT/models` | Có `wm.pt` và checkpoint Diffusion e025, e050, e075, e100, e125; không có mô hình cuối cùng `dp_final.pt` hoặc `wm_iter1.pt` |
-| Video gốc | Tệp quay màn hình đi kèm hồ sơ, không dùng riêng tệp này để chứng minh hoàn thành huấn luyện |
-| Ảnh robot thật | Minh họa bối cảnh bài toán; không phải bằng chứng thử nghiệm phần cứng của người nộp |
-
-Chưa có JSON đánh giá theo từng ván hoặc dữ liệu tự chơi `rollouts_iter1.npz` trong snapshot này. Không tạo thêm tệp giả, trọng số giả hoặc các phép đo chưa thực hiện. Các output tham khảo vẫn được giữ nguyên trong notebook.
-
-## Demo tham khảo
-
-Các clip dưới đây lấy từ bộ tư liệu được cung cấp. Khung trái là Chỉ Diffusion; khung phải là Diffusion kết hợp World Model vòng 1 theo nhãn trong clip. Việc chọn các ván minh họa không thay thế đánh giá trên toàn bộ tập seed.
+Mỗi GIF so sánh cùng một seed: bên trái **Chỉ Diffusion**, bên phải **Diffusion + World Model vòng 1**. Seed 4036 và 4093 là các ví dụ được chọn vì có cải thiện rõ; seed 4000 cho ví dụ cả hai cấu hình đều thành công. Các clip minh họa không thay thế đánh giá trên toàn bộ tập seed.
 
 ### Seed 4000
 
-![Demo tham khảo seed 4000](media/clip_seed4000.gif)
+![Demo seed 4000](media/clip_seed4000.gif)
 
 ### Seed 4036
 
-![Demo tham khảo seed 4036](media/clip_seed4036.gif)
+![Demo seed 4036](media/clip_seed4036.gif)
 
 ### Seed 4093
 
-![Demo tham khảo seed 4093](media/clip_seed4093.gif)
+![Demo seed 4093](media/clip_seed4093.gif)
 
-Video MP4 gốc: [xem hoặc tải tệp](media/screen_recording_original.mp4). GIF được nhúng trực tiếp ở README để giảng viên xem nhanh ngay cả khi trình xem notebook không phát ảnh động. GitHub cũng hỗ trợ video đính kèm theo [hướng dẫn chính thức](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/attaching-files). Việc đăng tệp lên GitHub không tự chạy huấn luyện mô hình.
+Video đi kèm: [mở hoặc tải bản MP4](media/screen_recording_original.mp4). Đây là bản quay màn hình demo, không phải bản ghi chứng minh một lần huấn luyện mới.
 
-## Nội dung và chiến thuật
+## Hiện trạng và phạm vi
 
-1. Tải dữ liệu `lerobot/pusht` và đối chiếu trạng thái, hành động, ảnh.
-2. Ước lượng tư thế khối T từ ảnh bằng khớp khuôn hình học và IoU.
-3. Huấn luyện World Model dự đoán độ thay đổi tư thế từ trạng thái và hành động; chia theo ván để tránh rò rỉ dữ liệu.
-4. Đánh giá so với mốc vật thể đứng yên và kiểm tra các khung thực sự chuyển động.
-5. Phần mở rộng sinh ứng viên bằng Diffusion, chọn bằng World Model, thu dữ liệu tự chơi và đánh giá lại.
+Notebook được cung cấp để tìm hiểu phương pháp và đã có output của một lần chạy trước. Các số liệu, hình và demo lưu sẵn **không phải một lần chạy lại toàn bộ mới được nhóm xác nhận**. Chưa huấn luyện hoặc đánh giá lại khi chuẩn bị bản nộp này.
 
-Sự có mặt của mã hoặc output tham khảo không có nghĩa mọi bước đã được người nộp chạy lại.
+| Tư liệu | Nguồn và giới hạn |
+|---|---|
+| Notebook, HTML, ba GIF và video MP4 | Các tệp có trong thư mục dự án hiện tại |
+| `pusht_pose.py` | Tách nguyên mã từ ô ghi file trong notebook |
+| `results/notebook_figures` và log | Trích output đã lưu, không phát sinh phép đo mới |
+| `PushT/data`, `PushT/models`, `PushT/results` | Giữ các tệp đã tải lên trong lần đóng gói trước; thư mục hiện tại không còn bản sao cục bộ của các tệp này |
 
-## Chạy lại trên Windows
+Trong các checkpoint đã giữ có `wm.pt` và Diffusion đến epoch 125. Chưa có `dp_final.pt`, `wm_iter1.pt`, `rollouts_iter1.npz` hay bộ JSON đánh giá đầy đủ trong repository. Sự có mặt của output trong notebook không có nghĩa các tệp trung gian đó cũng được cung cấp. Không tạo trọng số giả hoặc thêm phép đo chưa thực hiện.
 
-Môi trường đã kiểm tra: Python 3.11.9, PyTorch 2.7.1 với CUDA 11.8. Chọn bản PyTorch phù hợp với GPU và driver.
+Theo phạm vi nộp bài, file PDF tài liệu và ảnh JPG rời đi kèm thư mục ban đầu được để ngoài bản hiện tại trên GitHub. Báo cáo Word/PDF cũng được nộp riêng. Hình kết quả trích từ notebook và GIF demo vẫn được giữ đầy đủ.
 
-```powershell
-python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install --upgrade pip
-.\.venv\Scripts\python.exe -m pip install jupyterlab ipykernel numpy gymnasium gym-pusht pandas pyarrow opencv-python av huggingface_hub matplotlib pillow
-.\.venv\Scripts\python.exe -m pip install torch==2.7.1 --index-url https://download.pytorch.org/whl/cu118
-.\.venv\Scripts\python.exe -X utf8 -m jupyter lab "PushT_WorldModel.ipynb"
-```
+## Chiến thuật triển khai
 
-Trong VS Code phải chọn kernel `.venv/Scripts/python.exe`. Kích hoạt `.venv` ở Terminal không tự đổi kernel của notebook. Chạy lần lượt từ trên xuống. Dữ liệu và kết quả được lưu trong `PushT`.
+1. Nạp dữ liệu, phân biệt vị trí robot với điểm đặt điều khiển và giữ ranh giới từng ván.
+2. Khớp khuôn hình học để suy ra tư thế khối T; kiểm tra độ khớp, nội suy các khung kém và kiểm chứng nhãn.
+3. Học World Model dự đoán độ thay đổi tư thế, dùng đặc trưng tương đối và chia dữ liệu theo ván.
+4. So sánh với mốc vật đứng yên, kiểm tra riêng khung có chuyển động và dự đoán nhiều bước.
+5. Sinh chuỗi hành động bằng Diffusion, dùng World Model chọn ứng viên, thu dữ liệu robot tự chơi và đánh giá lại.
 
-Các bước nặng dùng lại tệp đã có khi cờ `FORCE` tương ứng là `False`. Đây không phải cơ chế tiếp tục huấn luyện từ giữa epoch: nếu thiếu checkpoint cuối, mã huấn luyện hiện tại có thể chạy lại từ đầu. Cần giữ riêng tư liệu tham khảo và ghi nhận một lần chạy mới khi tái lập. Không giảm `DP_EPOCHS` xuống dưới 175 mà giữ nguyên bước chọn checkpoint.
+## Khi chạy lại
 
-## Tài liệu tham khảo
+Notebook dùng Python và các thư viện `numpy`, `torch`, `matplotlib`, `gymnasium`, `gym-pusht`, `pandas`, `pyarrow`, `opencv-python`, `av`, `huggingface_hub`, `pillow` và môi trường Jupyter. Chọn đúng kernel có các thư viện trước khi chạy từ trên xuống.
+
+Đường dẫn mặc định trong bản notebook hiện tại là `D:\AI\PushT`, có thể đổi biến `ROOT` hoặc đặt biến môi trường `PUSHT_ROOT`. Cờ `FORCE` quyết định một bước có chạy lại khi đã có tệp đầu ra hay không; đây không phải cơ chế tự tiếp tục huấn luyện từ giữa epoch. Cần kiểm tra đủ parquet, metadata và video trước khi bỏ qua tải dữ liệu. Nếu giảm số epoch Diffusion để thử nhanh, phải điều chỉnh cả bước chọn checkpoint đang yêu cầu tối thiểu epoch 175.
+
+Bản notebook được giữ theo tệp hiện có, chưa sửa hoặc chạy lại chương trình trong lần chuẩn bị này. Chọn đúng thư mục và lưu riêng các kết quả mới khi tái lập.
+
+## Dữ liệu và phương pháp liên quan
 
 - Dataset: https://huggingface.co/datasets/lerobot/pusht
-- Dataset keypoints: https://huggingface.co/datasets/lerobot/pusht_keypoints
+- Bộ điểm góc kiểm chứng: https://huggingface.co/datasets/lerobot/pusht_keypoints
 - Diffusion Policy: https://diffusion-policy.cs.columbia.edu/
 - Mã nguồn chính thức: https://github.com/real-stanford/diffusion_policy
-- Bài báo: https://arxiv.org/abs/2303.04137
-- Tutorial do giảng viên gợi ý: https://learnrobotics.ai/learn/day-17
 
-Nguồn tác giả của notebook tham khảo cần được bổ sung khi được xác nhận. Các nguồn bên ngoài giữ nguyên điều kiện sử dụng và bản quyền tương ứng. Bộ dữ liệu gốc được ghi nguồn trong metadata và README kèm theo.
+Các nguồn bên ngoài giữ nguyên điều kiện sử dụng tương ứng. Nguồn tác giả của notebook được cung cấp cần được bổ sung khi được xác nhận.
