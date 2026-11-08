@@ -10,9 +10,6 @@ Mã nguồn và tư liệu của bài toán học quy luật tương tác giữa
 - [Hình và GIF trích từ output notebook](results/notebook_figures/)
 - [Log output đã lưu](results/notebook_stdout.txt)
 - [Video quay màn hình MP4](media/screen_recording_original.mp4)
-- [Các tệp kết quả đã đưa lên từ lần trước](PushT/results/)
-- [Dữ liệu đã xử lý được giữ từ lần trước](PushT/data/sim/)
-- [Checkpoint hiện có trong repository](PushT/models/)
 - [Danh mục tệp và mã băm Git](ARTIFACT_MANIFEST.json)
 
 ## Demo
@@ -42,9 +39,8 @@ Notebook được cung cấp để tìm hiểu phương pháp và đã có outpu
 | Notebook, HTML, ba GIF và video MP4 | Các tệp có trong thư mục dự án hiện tại |
 | `pusht_pose.py` | Tách nguyên mã từ ô ghi file trong notebook |
 | `results/notebook_figures` và log | Trích output đã lưu, không phát sinh phép đo mới |
-| `PushT/data`, `PushT/models`, `PushT/results` | Giữ các tệp đã tải lên trong lần đóng gói trước; thư mục hiện tại không còn bản sao cục bộ của các tệp này |
 
-Trong các checkpoint đã giữ có `wm.pt` và Diffusion đến epoch 125. Chưa có `dp_final.pt`, `wm_iter1.pt`, `rollouts_iter1.npz` hay bộ JSON đánh giá đầy đủ trong repository. Sự có mặt của output trong notebook không có nghĩa các tệp trung gian đó cũng được cung cấp. Không tạo trọng số giả hoặc thêm phép đo chưa thực hiện.
+Repository hiện chỉ giữ notebook, HTML, mã hỗ trợ, output đã lưu, hình kết quả, GIF demo và video MP4. Các tệp dữ liệu huấn luyện, checkpoint và kết quả trung gian cũ đã được loại khỏi nhánh chính. Để chạy lại đầy đủ cần tải dữ liệu và tự tạo các trọng số cùng kết quả mới; output sẵn có trong notebook không thay thế các tệp này.
 
 Theo phạm vi nộp bài, file PDF tài liệu và ảnh JPG rời đi kèm thư mục ban đầu được để ngoài bản hiện tại trên GitHub. Báo cáo Word/PDF cũng được nộp riêng. Hình kết quả trích từ notebook và GIF demo vẫn được giữ đầy đủ.
 

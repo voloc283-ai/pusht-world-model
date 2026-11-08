@@ -7,9 +7,7 @@
   ],
   "evaluation_outputs": "saved reference notebook outputs; no new complete training or evaluation run",
   "missing_final_artifacts": [
-    "dp_final.pt",
-    "wm_iter1.pt",
-    "rollouts_iter1.npz",
+    "training dataset and model checkpoints",
     "full per-episode evaluation JSON"
   ],
   "files": [
@@ -17,168 +15,6 @@
       "path": ".gitignore",
       "bytes": 98,
       "git_blob_sha1": "ff51481f4a12b0d2ed235e3d25a59c06705a0249",
-      "source": "tệp giữ từ lần đóng gói trước"
-    },
-    {
-      "path": "PushT/data/raw/.gitattributes",
-      "bytes": 2419,
-      "git_blob_sha1": "55cab133643a2a73e083373d2106533678d0edd5",
-      "source": "tệp giữ từ lần đóng gói trước"
-    },
-    {
-      "path": "PushT/data/raw/README.md",
-      "bytes": 3538,
-      "git_blob_sha1": "9005ff31912b5b48506e519c2534cc63961d0e74",
-      "source": "tệp giữ từ lần đóng gói trước"
-    },
-    {
-      "path": "PushT/data/raw/data/chunk-000/file-000.parquet",
-      "bytes": 674393,
-      "git_blob_sha1": "4364d0994e6f2cfa53c42c3755ea309677d535d3",
-      "source": "tệp giữ từ lần đóng gói trước"
-    },
-    {
-      "path": "PushT/data/raw/meta/episodes/chunk-000/file-000.parquet",
-      "bytes": 106584,
-      "git_blob_sha1": "da8d4295153cdfb940dc3ce2863f8d14b6736b1a",
-      "source": "tệp giữ từ lần đóng gói trước"
-    },
-    {
-      "path": "PushT/data/raw/meta/info.json",
-      "bytes": 2261,
-      "git_blob_sha1": "de3c71d108d220f5d500416542bb5b8a49574eaa",
-      "source": "tệp giữ từ lần đóng gói trước"
-    },
-    {
-      "path": "PushT/data/raw/meta/stats.json",
-      "bytes": 4371,
-      "git_blob_sha1": "28e319831a7f4f99dfadcba0e7aaafe41cb4f618",
-      "source": "tệp giữ từ lần đóng gói trước"
-    },
-    {
-      "path": "PushT/data/raw/meta/tasks.parquet",
-      "bytes": 2265,
-      "git_blob_sha1": "52559ec3c70052ef834a97e8b2b817106512e8e1",
-      "source": "tệp giữ từ lần đóng gói trước"
-    },
-    {
-      "path": "PushT/data/raw/videos/observation.image/chunk-000/file-000.mp4",
-      "bytes": 6890970,
-      "git_blob_sha1": "45cecb1a874c6531664226410e2803ce3319044f",
-      "source": "tệp giữ từ lần đóng gói trước"
-    },
-    {
-      "path": "PushT/data/raw_keypoints/data/chunk-000/file-000.parquet",
-      "bytes": 1979773,
-      "git_blob_sha1": "9b04d1b56c282e5a66d931333274328b79a8cc29",
-      "source": "tệp giữ từ lần đóng gói trước"
-    },
-    {
-      "path": "PushT/data/raw_keypoints/meta/episodes/chunk-000/file-000.parquet",
-      "bytes": 256476,
-      "git_blob_sha1": "fb5e8117fda9d2868ed0606964cadee0a9b7dc72",
-      "source": "tệp giữ từ lần đóng gói trước"
-    },
-    {
-      "path": "PushT/data/raw_keypoints/meta/info.json",
-      "bytes": 3118,
-      "git_blob_sha1": "10a3cf66de2652e677f750276eeb1f0bc68fbc03",
-      "source": "tệp giữ từ lần đóng gói trước"
-    },
-    {
-      "path": "PushT/data/raw_keypoints/meta/stats.json",
-      "bytes": 5198,
-      "git_blob_sha1": "c529603f0942818461977955265723ca436694ff",
-      "source": "tệp giữ từ lần đóng gói trước"
-    },
-    {
-      "path": "PushT/data/raw_keypoints/meta/tasks.parquet",
-      "bytes": 2218,
-      "git_blob_sha1": "1c6939a7bd0fd999c2934dd147f68a716e4cecf2",
-      "source": "tệp giữ từ lần đóng gói trước"
-    },
-    {
-      "path": "PushT/data/sim/block_fit.npy",
-      "bytes": 102728,
-      "git_blob_sha1": "14c115b2a656d1332edd40bc08aee963120fd53d",
-      "source": "tệp giữ từ lần đóng gói trước"
-    },
-    {
-      "path": "PushT/data/sim/block_pose.npy",
-      "bytes": 307928,
-      "git_blob_sha1": "c405971afc11150da6d6d3a79a71da3e9eb599fa",
-      "source": "tệp giữ từ lần đóng gói trước"
-    },
-    {
-      "path": "PushT/data/sim/pusht_lowdim.npz",
-      "bytes": 1027234,
-      "git_blob_sha1": "3fc63e579a160b15383ab4a122d72da3d1a4d983",
-      "source": "tệp giữ từ lần đóng gói trước"
-    },
-    {
-      "path": "PushT/models/dp_v2_e025.pt",
-      "bytes": 39251910,
-      "git_blob_sha1": "bcf6caf4c6d0916dc077608e592033a4d3e1834c",
-      "source": "tệp giữ từ lần đóng gói trước"
-    },
-    {
-      "path": "PushT/models/dp_v2_e050.pt",
-      "bytes": 39251910,
-      "git_blob_sha1": "f2710d1b164de114438419c703497eb314c5741e",
-      "source": "tệp giữ từ lần đóng gói trước"
-    },
-    {
-      "path": "PushT/models/dp_v2_e075.pt",
-      "bytes": 39251910,
-      "git_blob_sha1": "fd0647a01808c1f323594ea59d4723402b86ef12",
-      "source": "tệp giữ từ lần đóng gói trước"
-    },
-    {
-      "path": "PushT/models/dp_v2_e100.pt",
-      "bytes": 39251910,
-      "git_blob_sha1": "467146bd88d32a575e6e1bd88d99d50eed693ce6",
-      "source": "tệp giữ từ lần đóng gói trước"
-    },
-    {
-      "path": "PushT/models/dp_v2_e125.pt",
-      "bytes": 39251910,
-      "git_blob_sha1": "42d1be7cbb3f8cde70f114a8590d6ddeee12a6f2",
-      "source": "tệp giữ từ lần đóng gói trước"
-    },
-    {
-      "path": "PushT/models/wm.pt",
-      "bytes": 552781,
-      "git_blob_sha1": "b6091dd32369a64d592461cefdf30af9a06cd059",
-      "source": "tệp giữ từ lần đóng gói trước"
-    },
-    {
-      "path": "PushT/results/b1_du_lieu.png",
-      "bytes": 59463,
-      "git_blob_sha1": "5903c1f013cbf4eb57d4e9e430dbc126cdaa11c3",
-      "source": "tệp giữ từ lần đóng gói trước"
-    },
-    {
-      "path": "PushT/results/b2_kiemchung_tuthe.png",
-      "bytes": 45620,
-      "git_blob_sha1": "b317bd1c8b104bf5cabbee86d25e07e038c970ff",
-      "source": "tệp giữ từ lần đóng gói trước"
-    },
-    {
-      "path": "PushT/results/b2_kiemtra_tuthe.png",
-      "bytes": 77189,
-      "git_blob_sha1": "777023cfd0e8369453055537c0ecf3e9bf21e097",
-      "source": "tệp giữ từ lần đóng gói trước"
-    },
-    {
-      "path": "PushT/results/b2_simulator.png",
-      "bytes": 58417,
-      "git_blob_sha1": "b4845ca3a047cc29cfde07f7a7725b7d20822cf7",
-      "source": "tệp giữ từ lần đóng gói trước"
-    },
-    {
-      "path": "PushT/results/b3_wm_ketqua.png",
-      "bytes": 109787,
-      "git_blob_sha1": "b5ea7cb8839cd549fb8ec3e41d3713c135769b2d",
       "source": "tệp giữ từ lần đóng gói trước"
     },
     {
@@ -195,9 +31,9 @@
     },
     {
       "path": "README.md",
-      "bytes": 5695,
-      "git_blob_sha1": "e2a985466b0d6b660d99a38ef42435e17fa42bc1",
-      "source": "hướng dẫn xem và hiện trạng bản nộp"
+      "bytes": 5320,
+      "git_blob_sha1": "37dc4b2f260372f3f4b9589ab7696fc6722f629f",
+      "source": "hướng dẫn bộ nộp hiện tại sau khi dọn tệp cũ"
     },
     {
       "path": "media/clip_seed4000.gif",
@@ -313,5 +149,10 @@
       "git_blob_sha1": "b3d964183b0656b069320144aeea53a7dc10947c",
       "source": "log trích nguyên từ output notebook hiện tại"
     }
+  ],
+  "removed_legacy_directories": [
+    "PushT/data",
+    "PushT/models",
+    "PushT/results"
   ]
 }
